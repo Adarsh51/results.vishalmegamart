@@ -237,17 +237,47 @@ function printResult() {
     // Add watermark to the cloned container
     resultsContainer.appendChild(watermarkContainer);
     
+    // Create a temporary container for PDF generation
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.left = '-9999px';
+    tempContainer.appendChild(resultsContainer);
+    document.body.appendChild(tempContainer);
+    
     // Configure PDF options
     const opt = {
-        margin: 10,
+        margin: [10, 10, 10, 10],
         filename: 'VMMSET_2025_Results.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: true,
+            letterRendering: true
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait',
+            compress: true
+        }
     };
     
-    // Generate PDF
-    html2pdf().set(opt).from(resultsContainer).save();
+    // Generate PDF with error handling
+    try {
+        html2pdf().set(opt).from(tempContainer).save().then(() => {
+            // Clean up temporary container
+            document.body.removeChild(tempContainer);
+        }).catch(error => {
+            console.error('PDF generation failed:', error);
+            alert('Failed to generate PDF. Please try again.');
+            document.body.removeChild(tempContainer);
+        });
+    } catch (error) {
+        console.error('PDF generation failed:', error);
+        alert('Failed to generate PDF. Please try again.');
+        document.body.removeChild(tempContainer);
+    }
 }
 
 // Check another result
