@@ -42,16 +42,16 @@ body {
 }
 
 .logo {
-    font-size: 3rem;
-    background: white;
-    color: #003366;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
 }
 
 .header-text h1 {
@@ -441,18 +441,21 @@ body {
     }
     
     /* Print Watermark */
-    .results-container::before {
+    body::after {
         content: "VISHAL MEGA MART™";
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-30deg);
-        font-size: 5rem;
+        font-size: 4rem;
         font-weight: bold;
-        color: rgba(0, 0, 0, 0.1);
-        z-index: -1;
+        color: rgba(0, 0, 0, 0.15);
+        z-index: 1000;
         white-space: nowrap;
         pointer-events: none;
+        display: block;
+        font-family: 'Segoe UI', 'Roboto', sans-serif;
+        letter-spacing: 0.2em;
     }
 }
 
