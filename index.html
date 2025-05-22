@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VMMSET Results Portal - 2025</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">🏪</div>
+                <div class="header-text">
+                    <h1>VMMSET Results Portal - 2025</h1>
+                    <h2>Vishal Mega Mart Security Entrance Test</h2>
+                    <p class="exam-year">Examination Year: 2025</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Login Form Section -->
+            <section id="login-section" class="form-section">
+                <div class="form-container">
+                    <h3>Check Your VMMSET Results</h3>
+                    <p class="instruction">Please enter your details to view your examination results</p>
+                    
+                    <form id="result-form" class="result-form">
+                        <div class="input-group">
+                            <label for="roll-number">Roll Number *</label>
+                            <input type="text" id="roll-number" name="roll-number" placeholder="e.g., 2211900150" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="admit-card">Admit Card ID *</label>
+                            <input type="text" id="admit-card" name="admit-card" placeholder="e.g., VMMSET2025-AXU723" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="captcha">Security Code *</label>
+                            <div class="captcha-container">
+                                <div class="captcha-box" id="captcha-display" onclick="refreshCaptcha()"></div>
+                                <button type="button" class="refresh-btn" onclick="refreshCaptcha()">🔄</button>
+                            </div>
+                            <input type="text" id="captcha-input" name="captcha" placeholder="Enter the code shown above" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">View Results</button>
+                    </form>
+
+                    <div id="error-message" class="error-message"></div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section" style="display: none;">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h3>VMMSET 2025 - Examination Results</h3>
+                        <div class="result-status" id="result-status">PASSED</div>
+                    </div>
+
+                    <!-- Student Information -->
+                    <div class="student-info">
+                        <h4>Student Information</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Name:</span>
+                                <span class="value" id="student-name"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Roll Number:</span>
+                                <span class="value" id="student-roll"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Admit Card ID:</span>
+                                <span class="value" id="student-admit"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Exam Year:</span>
+                                <span class="value">2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marks Table -->
+                    <div class="marks-section">
+                        <h4>Subject-wise Marks</h4>
+                        <table class="marks-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Marks Obtained</th>
+                                    <th>Maximum Marks</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="marks-tbody">
+                                <!-- Marks will be populated by JavaScript -->
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <th>TOTAL</th>
+                                    <th id="total-obtained"></th>
+                                    <th id="total-maximum"></th>
+                                    <th id="final-result"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button onclick="printResult()" class="print-btn">🖨️ Print Result</button>
+                        <button onclick="checkAnother()" class="check-another-btn">Check Another Result</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This is a parody project and not affiliated with Vishal Mega Mart or any actual examination board.</p>
+            </div>
+            <div class="contact-info">
+                <p>Helpline: 1800-MEGA-MART (1800-634-2627) | Email: results@vmmset.gov.in</p>
+                <p>&copy; 2025 VMMSET Board. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
