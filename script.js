@@ -201,7 +201,151 @@ function displayResults(student) {
 
 // Print results
 function printResult() {
-    window.print();
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank');
+    
+    // Get the results content
+    const resultsContent = document.querySelector('.results-container').innerHTML;
+    
+    // Create the print-friendly HTML
+    const printContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>VMMSET 2025 Results</title>
+            <style>
+                body {
+                    font-family: 'Segoe UI', 'Roboto', sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                    padding: 20px;
+                }
+                .results-container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+                .results-header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    padding-bottom: 20px;
+                    border-bottom: 2px solid #e9ecef;
+                }
+                .results-header h3 {
+                    color: #1565c0;
+                    font-size: 1.8rem;
+                    margin-bottom: 15px;
+                }
+                .result-status {
+                    display: inline-block;
+                    padding: 8px 20px;
+                    background: #e8f5e9;
+                    color: #2e7d32;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                }
+                .result-status.failed {
+                    background: #ffebee;
+                    color: #c62828;
+                }
+                .student-info {
+                    margin-bottom: 30px;
+                }
+                .student-info h4 {
+                    color: #1565c0;
+                    font-size: 1.3rem;
+                    margin-bottom: 15px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .info-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                }
+                .info-item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+                .info-item .label {
+                    font-weight: 600;
+                    color: #555;
+                    font-size: 0.9rem;
+                }
+                .info-item .value {
+                    color: #333;
+                    font-size: 1.1rem;
+                }
+                .marks-section h4 {
+                    color: #1565c0;
+                    font-size: 1.3rem;
+                    margin-bottom: 15px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .marks-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                .marks-table th,
+                .marks-table td {
+                    padding: 12px 15px;
+                    text-align: left;
+                    border-bottom: 1px solid #e9ecef;
+                }
+                .marks-table th {
+                    background: #f8f9fa;
+                    font-weight: 600;
+                    color: #1565c0;
+                }
+                .marks-table .total-row {
+                    background: #f8f9fa;
+                    font-weight: 600;
+                }
+                .marks-table .total-row th {
+                    color: #1565c0;
+                }
+                .pass-status {
+                    color: #2e7d32;
+                    font-weight: 600;
+                }
+                .fail-status {
+                    color: #c62828;
+                    font-weight: 600;
+                }
+                @media print {
+                    body {
+                        padding: 0;
+                    }
+                    .marks-table th {
+                        background: #f8f9fa !important;
+                        -webkit-print-color-adjust: exact;
+                        print-color-adjust: exact;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="results-container">
+                ${resultsContent}
+            </div>
+            <script>
+                window.onload = function() {
+                    window.print();
+                    window.onafterprint = function() {
+                        window.close();
+                    };
+                };
+            </script>
+        </body>
+        </html>
+    `;
+    
+    // Write the content to the new window
+    printWindow.document.write(printContent);
+    printWindow.document.close();
 }
 
 // Check another result
