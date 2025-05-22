@@ -463,3 +463,54 @@ function addSmoothTransitions() {
 
 // Initialize smooth transitions
 document.addEventListener('DOMContentLoaded', addSmoothTransitions);
+
+// Download results as PDF
+function downloadPDF() {
+    // Create watermark container
+    const watermarkContainer = document.createElement('div');
+    watermarkContainer.style.position = 'fixed';
+    watermarkContainer.style.top = '50%';
+    watermarkContainer.style.left = '50%';
+    watermarkContainer.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+    watermarkContainer.style.zIndex = '1000';
+    watermarkContainer.style.pointerEvents = 'none';
+    watermarkContainer.style.opacity = '0.1';
+    watermarkContainer.style.width = '100%';
+    watermarkContainer.style.textAlign = 'center';
+    
+    // Create watermark text
+    const watermarkText = document.createElement('div');
+    watermarkText.style.fontSize = '48px';
+    watermarkText.style.fontWeight = 'bold';
+    watermarkText.style.color = '#1565c0';
+    watermarkText.textContent = 'VISHAL MEGA MART™';
+    
+    // Create developer credit
+    const developerCredit = document.createElement('div');
+    developerCredit.style.fontSize = '24px';
+    developerCredit.style.marginTop = '10px';
+    developerCredit.style.color = '#1565c0';
+    developerCredit.textContent = 'Developed by Adarsh Dubey';
+    
+    // Add watermark elements to container
+    watermarkContainer.appendChild(watermarkText);
+    watermarkContainer.appendChild(developerCredit);
+    
+    // Clone the results container
+    const resultsContainer = document.querySelector('.results-container').cloneNode(true);
+    
+    // Add watermark to the cloned container
+    resultsContainer.appendChild(watermarkContainer);
+    
+    // Configure PDF options
+    const opt = {
+        margin: 10,
+        filename: 'VMMSET_2025_Results.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    // Generate PDF
+    html2pdf().set(opt).from(resultsContainer).save();
+}
