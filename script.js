@@ -201,151 +201,53 @@ function displayResults(student) {
 
 // Print results
 function printResult() {
-    // Create a new window for printing
-    const printWindow = window.open('', '_blank');
+    // Create watermark container
+    const watermarkContainer = document.createElement('div');
+    watermarkContainer.style.position = 'fixed';
+    watermarkContainer.style.top = '50%';
+    watermarkContainer.style.left = '50%';
+    watermarkContainer.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+    watermarkContainer.style.zIndex = '1000';
+    watermarkContainer.style.pointerEvents = 'none';
+    watermarkContainer.style.opacity = '0.1';
+    watermarkContainer.style.width = '100%';
+    watermarkContainer.style.textAlign = 'center';
     
-    // Get the results content
-    const resultsContent = document.querySelector('.results-container').innerHTML;
+    // Create watermark text
+    const watermarkText = document.createElement('div');
+    watermarkText.style.fontSize = '48px';
+    watermarkText.style.fontWeight = 'bold';
+    watermarkText.style.color = '#1565c0';
+    watermarkText.textContent = 'VISHAL MEGA MART™';
     
-    // Create the print-friendly HTML
-    const printContent = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>VMMSET 2025 Results</title>
-            <style>
-                body {
-                    font-family: 'Segoe UI', 'Roboto', sans-serif;
-                    line-height: 1.6;
-                    color: #333;
-                    padding: 20px;
-                }
-                .results-container {
-                    max-width: 800px;
-                    margin: 0 auto;
-                }
-                .results-header {
-                    text-align: center;
-                    margin-bottom: 30px;
-                    padding-bottom: 20px;
-                    border-bottom: 2px solid #e9ecef;
-                }
-                .results-header h3 {
-                    color: #1565c0;
-                    font-size: 1.8rem;
-                    margin-bottom: 15px;
-                }
-                .result-status {
-                    display: inline-block;
-                    padding: 8px 20px;
-                    background: #e8f5e9;
-                    color: #2e7d32;
-                    border-radius: 20px;
-                    font-weight: 600;
-                    font-size: 1.1rem;
-                }
-                .result-status.failed {
-                    background: #ffebee;
-                    color: #c62828;
-                }
-                .student-info {
-                    margin-bottom: 30px;
-                }
-                .student-info h4 {
-                    color: #1565c0;
-                    font-size: 1.3rem;
-                    margin-bottom: 15px;
-                    padding-bottom: 10px;
-                    border-bottom: 1px solid #e9ecef;
-                }
-                .info-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                    gap: 20px;
-                }
-                .info-item {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-                }
-                .info-item .label {
-                    font-weight: 600;
-                    color: #555;
-                    font-size: 0.9rem;
-                }
-                .info-item .value {
-                    color: #333;
-                    font-size: 1.1rem;
-                }
-                .marks-section h4 {
-                    color: #1565c0;
-                    font-size: 1.3rem;
-                    margin-bottom: 15px;
-                    padding-bottom: 10px;
-                    border-bottom: 1px solid #e9ecef;
-                }
-                .marks-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin-top: 20px;
-                }
-                .marks-table th,
-                .marks-table td {
-                    padding: 12px 15px;
-                    text-align: left;
-                    border-bottom: 1px solid #e9ecef;
-                }
-                .marks-table th {
-                    background: #f8f9fa;
-                    font-weight: 600;
-                    color: #1565c0;
-                }
-                .marks-table .total-row {
-                    background: #f8f9fa;
-                    font-weight: 600;
-                }
-                .marks-table .total-row th {
-                    color: #1565c0;
-                }
-                .pass-status {
-                    color: #2e7d32;
-                    font-weight: 600;
-                }
-                .fail-status {
-                    color: #c62828;
-                    font-weight: 600;
-                }
-                @media print {
-                    body {
-                        padding: 0;
-                    }
-                    .marks-table th {
-                        background: #f8f9fa !important;
-                        -webkit-print-color-adjust: exact;
-                        print-color-adjust: exact;
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="results-container">
-                ${resultsContent}
-            </div>
-            <script>
-                window.onload = function() {
-                    window.print();
-                    window.onafterprint = function() {
-                        window.close();
-                    };
-                };
-            </script>
-        </body>
-        </html>
-    `;
+    // Create developer credit
+    const developerCredit = document.createElement('div');
+    developerCredit.style.fontSize = '24px';
+    developerCredit.style.marginTop = '10px';
+    developerCredit.style.color = '#1565c0';
+    developerCredit.textContent = 'Developed by Adarsh Dubey';
     
-    // Write the content to the new window
-    printWindow.document.write(printContent);
-    printWindow.document.close();
+    // Add watermark elements to container
+    watermarkContainer.appendChild(watermarkText);
+    watermarkContainer.appendChild(developerCredit);
+    
+    // Clone the results container
+    const resultsContainer = document.querySelector('.results-container').cloneNode(true);
+    
+    // Add watermark to the cloned container
+    resultsContainer.appendChild(watermarkContainer);
+    
+    // Configure PDF options
+    const opt = {
+        margin: 10,
+        filename: 'VMMSET_2025_Results.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    // Generate PDF
+    html2pdf().set(opt).from(resultsContainer).save();
 }
 
 // Check another result
@@ -463,54 +365,3 @@ function addSmoothTransitions() {
 
 // Initialize smooth transitions
 document.addEventListener('DOMContentLoaded', addSmoothTransitions);
-
-// Download results as PDF
-function downloadPDF() {
-    // Create watermark container
-    const watermarkContainer = document.createElement('div');
-    watermarkContainer.style.position = 'fixed';
-    watermarkContainer.style.top = '50%';
-    watermarkContainer.style.left = '50%';
-    watermarkContainer.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
-    watermarkContainer.style.zIndex = '1000';
-    watermarkContainer.style.pointerEvents = 'none';
-    watermarkContainer.style.opacity = '0.1';
-    watermarkContainer.style.width = '100%';
-    watermarkContainer.style.textAlign = 'center';
-    
-    // Create watermark text
-    const watermarkText = document.createElement('div');
-    watermarkText.style.fontSize = '48px';
-    watermarkText.style.fontWeight = 'bold';
-    watermarkText.style.color = '#1565c0';
-    watermarkText.textContent = 'VISHAL MEGA MART™';
-    
-    // Create developer credit
-    const developerCredit = document.createElement('div');
-    developerCredit.style.fontSize = '24px';
-    developerCredit.style.marginTop = '10px';
-    developerCredit.style.color = '#1565c0';
-    developerCredit.textContent = 'Developed by Adarsh Dubey';
-    
-    // Add watermark elements to container
-    watermarkContainer.appendChild(watermarkText);
-    watermarkContainer.appendChild(developerCredit);
-    
-    // Clone the results container
-    const resultsContainer = document.querySelector('.results-container').cloneNode(true);
-    
-    // Add watermark to the cloned container
-    resultsContainer.appendChild(watermarkContainer);
-    
-    // Configure PDF options
-    const opt = {
-        margin: 10,
-        filename: 'VMMSET_2025_Results.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-    
-    // Generate PDF
-    html2pdf().set(opt).from(resultsContainer).save();
-}
