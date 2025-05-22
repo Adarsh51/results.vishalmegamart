@@ -1,0 +1,52 @@
+Create a full working frontend-only result checker website for a fictional and humorous exam called "VMMSET" (Vishal Mega Mart Security Entrance Test). The website should look professional, similar in design and structure to real Indian exam result portals like CBSE, ICSE, or state boards. It must use only HTML, CSS, and JavaScript (no backend or frameworks). The website should work offline and generate mock results based on predefined fake data in JavaScript.
+
+### General Theme:
+- Use light or bluish color palette (common in govt portals).
+- Responsive design (works on mobile and desktop).
+- Add logos, headings, and typical govt style formatting.
+
+### Website Name and Header:
+- Title: "VMMSET Results Portal - 2025"
+- Subtitle: "Vishal Mega Mart Security Entrance Test"
+- Add a fake logo (simple placeholder image or emoji).
+
+### Input Form:
+- Roll Number (e.g., 2211900150 format)
+- Admit Card ID (e.g., VMMSET2025-AXU723)
+- Security Code (CAPTCHA style, just type what’s shown — generated randomly on page load)
+- Submit Button
+
+### Validation:
+- Validate all fields are filled.
+- If roll number or admit card ID is incorrect (not matching the predefined fake data), show an alert "Invalid credentials. Please try again."
+
+### Result Page (after successful validation):
+- Show student info:
+  - Name
+  - Roll Number
+  - Admit Card ID
+  - Exam Year: 2025
+- Subject-wise marks (funny subjects):
+  - Trolley Handling – 98/100
+  - Billing Counter Etiquette – 89/100
+  - Store Surveillance – 76/100
+  - Aisle Navigation – 92/100
+  - Mega Mart Code of Conduct – 85/100
+  - Total: 440/500
+  - Result: PASSED
+- Use table format for marks.
+- Add a “Print Result” button (using window.print()).
+- A “Check Another Result” button to go back to the input form.
+
+### JavaScript Requirements:
+- Use a JavaScript object or array to store mock roll numbers, admit card IDs, and corresponding results.
+- Show a random CAPTCHA-like code (e.g., K8G2F) on page load and refresh when clicked.
+- On form submit, check roll number and admit card ID from the fake data, and if CAPTCHA is entered correctly, display the result.
+- All logic must be done on frontend only.
+
+### Extras (Optional):
+- Add a disclaimer: “This is a parody project and not affiliated with Vishal Mega Mart.”
+- Add light animations or hover effects.
+- Add a footer with fake contact info or helpline number.
+
+Make sure everything works using only HTML, CSS, and JavaScript — no external APIs or backends.
