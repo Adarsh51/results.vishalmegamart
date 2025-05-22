@@ -1,11 +1,11 @@
 // VMMSET Results Portal JavaScript
 
-// Mock student database - CBSE-style data structure
+// Mock student database - updated with shorter admit card format
 const mockDatabase = [
     {
         name: "Adarsh Dubey",
         rollNumber: "2311200171",
-        admitCard: "VMMSET2025-AXU723",
+        admitCard: "AXU723",
         subjects: {
             "Trolley Handling": 98,
             "Billing Counter Etiquette": 89,
@@ -17,7 +17,7 @@ const mockDatabase = [
     {
         name: "Prachi Jethwa",
         rollNumber: "2311200183",
-        admitCard: "VMMSET2025-JKL901",
+        admitCard: "JKL901",
         subjects: {
             "Trolley Handling": 88,
             "Billing Counter Etiquette": 91,
@@ -29,7 +29,7 @@ const mockDatabase = [
     {
         name: "Sneha Pathak",
         rollNumber: "2311200195",
-        admitCard: "VMMSET2025-RST556",
+        admitCard: "RST556",
         subjects: {
             "Trolley Handling": 78,
             "Billing Counter Etiquette": 82,
@@ -41,7 +41,7 @@ const mockDatabase = [
     {
         name: "Rahul Meena",
         rollNumber: "2311200202",
-        admitCard: "VMMSET2025-QWE341",
+        admitCard: "QWE341",
         subjects: {
             "Trolley Handling": 67,
             "Billing Counter Etiquette": 72,
@@ -167,32 +167,29 @@ function displayResults(student) {
         totalObtained += marks;
         
         const row = document.createElement('tr');
-        const status = marks >= 35 ? 'PASS' : 'FAIL';
-        const statusClass = marks >= 35 ? 'pass-status' : 'fail-status';
+        const grade = calculateGrade(marks);
         
         row.innerHTML = `
             <td>${subject}</td>
             <td>${marks}</td>
-            <td>100</td>
-            <td class="${statusClass}">${status}</td>
+            <td>${grade}</td>
         `;
         
         marksTableBody.appendChild(row);
     });
     
     // Update totals
-    document.getElementById('total-obtained').textContent = totalObtained;
-    document.getElementById('total-maximum').textContent = totalMaximum;
+    document.getElementById('total-obtained').textContent = `${totalObtained}/500`;
     
     // Determine final result (pass if total >= 165/500)
-    const finalResult = totalObtained >= 165 ? 'PASSED' : 'FAILED';
+    const finalResult = totalObtained >= 165 ? 'Pass ✅' : 'Fail';
     const resultStatus = document.getElementById('result-status');
     const finalResultElement = document.getElementById('final-result');
     
     resultStatus.textContent = finalResult;
     finalResultElement.textContent = finalResult;
     
-    if (finalResult === 'FAILED') {
+    if (totalObtained < 165) {
         resultStatus.classList.add('failed');
         finalResultElement.className = 'fail-status';
     } else {
@@ -222,6 +219,16 @@ function checkAnother() {
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Calculate grade based on marks
+function calculateGrade(marks) {
+    if (marks >= 91) return 'A1';
+    if (marks >= 81) return 'A2';
+    if (marks >= 71) return 'B1';
+    if (marks >= 61) return 'B2';
+    if (marks >= 51) return 'C1';
+    return 'Fail';
 }
 
 // Utility function to format numbers with commas
