@@ -1,74 +1,56 @@
 // VMMSET Results Portal JavaScript
 
-// Mock student data - predefined fake data for the parody exam
-const studentDatabase = {
-    "2211900150": {
-        name: "Rajesh Kumar Singh",
+// Mock student database - CBSE-style data structure
+const mockDatabase = [
+    {
+        name: "Adarsh Dubey",
+        rollNumber: "2311200171",
         admitCard: "VMMSET2025-AXU723",
-        marks: {
-            "Trolley Handling": { obtained: 98, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 89, maximum: 100 },
-            "Store Surveillance": { obtained: 76, maximum: 100 },
-            "Aisle Navigation": { obtained: 92, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 85, maximum: 100 }
+        subjects: {
+            "Trolley Handling": 98,
+            "Billing Counter Etiquette": 89,
+            "Store Surveillance": 76,
+            "Aisle Navigation": 92,
+            "Mega Mart Code of Conduct": 85
         }
     },
-    "2211900151": {
-        name: "Priya Sharma",
-        admitCard: "VMMSET2025-BYV824",
-        marks: {
-            "Trolley Handling": { obtained: 94, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 96, maximum: 100 },
-            "Store Surveillance": { obtained: 88, maximum: 100 },
-            "Aisle Navigation": { obtained: 91, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 93, maximum: 100 }
+    {
+        name: "Prachi Jethwa",
+        rollNumber: "2311200183",
+        admitCard: "VMMSET2025-JKL901",
+        subjects: {
+            "Trolley Handling": 88,
+            "Billing Counter Etiquette": 91,
+            "Store Surveillance": 84,
+            "Aisle Navigation": 87,
+            "Mega Mart Code of Conduct": 93
         }
     },
-    "2211900152": {
-        name: "Mohammed Abdul Rahman",
-        admitCard: "VMMSET2025-CZW925",
-        marks: {
-            "Trolley Handling": { obtained: 87, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 92, maximum: 100 },
-            "Store Surveillance": { obtained: 85, maximum: 100 },
-            "Aisle Navigation": { obtained: 89, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 88, maximum: 100 }
+    {
+        name: "Sneha Pathak",
+        rollNumber: "2311200195",
+        admitCard: "VMMSET2025-RST556",
+        subjects: {
+            "Trolley Handling": 78,
+            "Billing Counter Etiquette": 82,
+            "Store Surveillance": 69,
+            "Aisle Navigation": 74,
+            "Mega Mart Code of Conduct": 80
         }
     },
-    "2211900153": {
-        name: "Sunita Devi",
-        admitCard: "VMMSET2025-DAX026",
-        marks: {
-            "Trolley Handling": { obtained: 91, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 88, maximum: 100 },
-            "Store Surveillance": { obtained: 94, maximum: 100 },
-            "Aisle Navigation": { obtained: 87, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 90, maximum: 100 }
-        }
-    },
-    "2211900154": {
-        name: "Amit Patel",
-        admitCard: "VMMSET2025-EBY127",
-        marks: {
-            "Trolley Handling": { obtained: 79, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 83, maximum: 100 },
-            "Store Surveillance": { obtained: 91, maximum: 100 },
-            "Aisle Navigation": { obtained: 86, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 81, maximum: 100 }
-        }
-    },
-    "2211900155": {
-        name: "Kavitha Reddy",
-        admitCard: "VMMSET2025-FCZ228",
-        marks: {
-            "Trolley Handling": { obtained: 96, maximum: 100 },
-            "Billing Counter Etiquette": { obtained: 94, maximum: 100 },
-            "Store Surveillance": { obtained: 89, maximum: 100 },
-            "Aisle Navigation": { obtained: 95, maximum: 100 },
-            "Mega Mart Code of Conduct": { obtained: 92, maximum: 100 }
+    {
+        name: "Rahul Meena",
+        rollNumber: "2311200202",
+        admitCard: "VMMSET2025-QWE341",
+        subjects: {
+            "Trolley Handling": 67,
+            "Billing Counter Etiquette": 72,
+            "Store Surveillance": 58,
+            "Aisle Navigation": 63,
+            "Mega Mart Code of Conduct": 70
         }
     }
-};
+];
 
 // Current CAPTCHA code
 let currentCaptcha = '';
@@ -135,15 +117,15 @@ function handleFormSubmit(event) {
     }
     
     // Validate student credentials
-    const student = studentDatabase[rollNumber];
-    if (!student || student.admitCard !== admitCard) {
-        showError('Invalid credentials. Please check your Roll Number and Admit Card ID.');
+    const student = mockDatabase.find(s => s.rollNumber === rollNumber && s.admitCard === admitCard);
+    if (!student) {
+        showError('Invalid credentials. Please try again.');
         refreshCaptcha();
         return;
     }
     
     // Display results
-    displayResults(rollNumber, student);
+    displayResults(student);
 }
 
 // Show error message
@@ -163,36 +145,35 @@ function hideError() {
 }
 
 // Display student results
-function displayResults(rollNumber, student) {
+function displayResults(student) {
     // Hide login section and show results
     loginSection.style.display = 'none';
     resultsSection.style.display = 'block';
     
     // Populate student information
     document.getElementById('student-name').textContent = student.name;
-    document.getElementById('student-roll').textContent = rollNumber;
+    document.getElementById('student-roll').textContent = student.rollNumber;
     document.getElementById('student-admit').textContent = student.admitCard;
     
     // Calculate totals
     let totalObtained = 0;
-    let totalMaximum = 0;
+    const totalMaximum = 500; // 5 subjects × 100 marks each
     
     // Populate marks table
     const marksTableBody = document.getElementById('marks-tbody');
     marksTableBody.innerHTML = '';
     
-    Object.entries(student.marks).forEach(([subject, marks]) => {
-        totalObtained += marks.obtained;
-        totalMaximum += marks.maximum;
+    Object.entries(student.subjects).forEach(([subject, marks]) => {
+        totalObtained += marks;
         
         const row = document.createElement('tr');
-        const status = marks.obtained >= 35 ? 'PASS' : 'FAIL';
-        const statusClass = marks.obtained >= 35 ? 'pass-status' : 'fail-status';
+        const status = marks >= 35 ? 'PASS' : 'FAIL';
+        const statusClass = marks >= 35 ? 'pass-status' : 'fail-status';
         
         row.innerHTML = `
             <td>${subject}</td>
-            <td>${marks.obtained}</td>
-            <td>${marks.maximum}</td>
+            <td>${marks}</td>
+            <td>100</td>
             <td class="${statusClass}">${status}</td>
         `;
         
@@ -203,9 +184,8 @@ function displayResults(rollNumber, student) {
     document.getElementById('total-obtained').textContent = totalObtained;
     document.getElementById('total-maximum').textContent = totalMaximum;
     
-    // Determine final result
-    const percentage = (totalObtained / totalMaximum) * 100;
-    const finalResult = percentage >= 40 ? 'PASSED' : 'FAILED';
+    // Determine final result (pass if total >= 165/500)
+    const finalResult = totalObtained >= 165 ? 'PASSED' : 'FAILED';
     const resultStatus = document.getElementById('result-status');
     const finalResultElement = document.getElementById('final-result');
     

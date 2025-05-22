@@ -1,0 +1,132 @@
+Create a fully functional and responsive frontend-only results portal for a fictional exam called "VMMSET" (Vishal Mega Mart Security Entrance Test), using only HTML, CSS, and JavaScript. The website must closely match the layout, style, and feel of the **CBSE result portal** — including fonts, colors, table layout, button design, and overall structure.
+
+It must **not use any backend** or frameworks. All validation and data must be handled in the browser using JavaScript.
+
+### 👨‍💻 Website Overview
+
+- **Title:** VMMSET Results Portal – 2025
+- **Subtitle (below title):** Vishal Mega Mart Security Entrance Test
+- **Design match:** Mimic the UI of official CBSE result portals – use formal, minimalistic design with proper spacing, a white content box on a blue or grey background, professional fonts, clean tables, and real-looking layout.
+
+---
+
+### 📱 Responsive Design
+
+- Ensure full responsiveness across mobile, tablet, and desktop devices using pure CSS (media queries).
+- On small screens, stack form elements and adjust table widths for visibility.
+
+---
+
+### 🧾 Input Form Page
+
+Include the following input fields styled like CBSE’s portal:
+
+1. **Roll Number** (10-digit input field) – e.g., 2311200171
+2. **Admit Card ID** – e.g., VMMSET2025-AXU723
+3. **Security Code (CAPTCHA)** – randomly generated alphanumeric code (like 9T5YB)
+4. **Submit Button** – labeled “Check Result”
+
+#### ✅ Validation Logic
+
+- Validate all fields are filled.
+- Match Roll Number and Admit Card ID with mock data stored in JavaScript.
+- If CAPTCHA is incorrect, show a styled error message like: “Incorrect Security Code”
+- If Roll Number and Admit Card don’t match, show: “Invalid credentials. Please try again.”
+
+---
+
+### 📄 Result Page
+
+After successful login, display a result sheet styled like CBSE portals. Include:
+
+- **Student Details:**
+  - Name
+  - Roll Number
+  - Admit Card ID
+  - Examination Year: 2025
+
+- **Subject-wise Marks Table**:
+  - Trolley Handling – /100
+  - Billing Counter Etiquette – /100
+  - Store Surveillance – /100
+  - Aisle Navigation – /100
+  - Mega Mart Code of Conduct – /100
+  - Total Marks: /500
+  - Result: PASSED / FAILED (decide based on marks)
+
+- Display results in a bordered table similar to CBSE result format.
+
+- Add:
+  - **Print Result** button (uses `window.print()`)
+  - **Check Another Result** button (returns to form)
+
+---
+
+### ✨ Styling Instructions
+
+- Font: Use a system default or similar to CBSE portals (Arial, Verdana, sans-serif).
+- Layout: Centered card with shadow on blue/grey background.
+- Buttons: Rounded with hover effects.
+- Input: Highlight on focus.
+- CAPTCHA: Refreshable by clicking or a small refresh icon.
+- Do not include any disclaimers or parody notices.
+- Footer should only say:  
+  `Designed and Developed by Adarsh Dubey.` (centered, minimal)
+
+---
+
+### 👥 Mock Data (Store in JavaScript Object)
+
+Add the following 4 entries:
+
+```javascript
+const mockDatabase = [
+  {
+    name: "Adarsh Dubey",
+    rollNumber: "2311200171",
+    admitCard: "VMMSET2025-AXU723",
+    subjects: {
+      "Trolley Handling": 98,
+      "Billing Counter Etiquette": 89,
+      "Store Surveillance": 76,
+      "Aisle Navigation": 92,
+      "Mega Mart Code of Conduct": 85
+    }
+  },
+  {
+    name: "Prachi Jethwa",
+    rollNumber: "2311200183",
+    admitCard: "VMMSET2025-JKL901",
+    subjects: {
+      "Trolley Handling": 88,
+      "Billing Counter Etiquette": 91,
+      "Store Surveillance": 84,
+      "Aisle Navigation": 87,
+      "Mega Mart Code of Conduct": 93
+    }
+  },
+  {
+    name: "Sneha Pathak",
+    rollNumber: "2311200195",
+    admitCard: "VMMSET2025-RST556",
+    subjects: {
+      "Trolley Handling": 78,
+      "Billing Counter Etiquette": 82,
+      "Store Surveillance": 69,
+      "Aisle Navigation": 74,
+      "Mega Mart Code of Conduct": 80
+    }
+  },
+  {
+    name: "Rahul Meena",
+    rollNumber: "2311200202",
+    admitCard: "VMMSET2025-QWE341",
+    subjects: {
+      "Trolley Handling": 67,
+      "Billing Counter Etiquette": 72,
+      "Store Surveillance": 58,
+      "Aisle Navigation": 63,
+      "Mega Mart Code of Conduct": 70
+    }
+  }
+];
