@@ -1,0 +1,158 @@
+Create a fully working, elegant, responsive, frontend-only result portal using only HTML, CSS, and JavaScript for a fictional exam called **VMMSET (Vishal Mega Mart Security Entrance Test)**. Do not use any backend, frameworks, or libraries.
+
+---
+
+### 🧾 Overview
+
+- Portal Name: **VMMSET 2025 Results**
+- Header Tagline: **Vishal Mega Mart Security Entrance Test**
+- Below tagline, add subtext:  
+  🕒 **Examination Year: 2025**
+- Design the top header section to look clean, centered, and stylish with clear separation between title, tagline, and subtext.
+
+---
+
+### ✨ Design & Styling Instructions
+
+- **Modern government-style design** inspired by CBSE result portals
+- Color Palette:
+  - Background: `#f0f4ff` or `#e6f0fa`
+  - Card: White with `box-shadow: 0 0 10px rgba(0,0,0,0.1)`
+  - Header: `#003366` or `#1b3a57`
+  - Accent colors: blue shades, soft borders, professional font (`Segoe UI`, `Roboto`, `sans-serif`)
+- Rounded corners, clean form spacing, hover and focus effects
+- Responsive via media queries
+- **No disclaimers** — footer should simply say:  
+  `Designed and Developed by Adarsh Dubey.` (centered)
+
+---
+
+### 🧾 Form Page
+
+- Fields:
+  - Roll Number (e.g., 2311200171)
+  - Admit Card ID (shortened, e.g., AXU723)
+  - Security Code (random 5-character CAPTCHA)
+- Include refresh button/icon for CAPTCHA
+- Validate inputs on submit:
+  - If CAPTCHA incorrect → show styled error
+  - If Roll/Admit incorrect → show “Invalid credentials”
+
+---
+
+### 📜 Result Page – Full Redesign
+
+Display a clean result layout similar to CBSE format but enhanced:
+
+- Top Section:
+  - Name, Roll No, Admit Card ID, Year (2025)
+
+- Subject-wise Table:
+
+| Subject                     | Marks | Grade |
+|-----------------------------|-------|--------|
+| Trolley Handling            | 98    | A1     |
+| Billing Counter Etiquette  | 89    | A2     |
+| Store Surveillance          | 76    | B1     |
+| Aisle Navigation            | 92    | A1     |
+| Mega Mart Code of Conduct  | 85    | A2     |
+| **Total**                  | 440/500 |       |
+
+- Below table:
+  - **Result:** Pass ✅  
+    *(Not “PASSED”)*
+  - Two buttons:
+    - “🖨 Print Result” → `window.print()`
+    - “🔄 Check Another Result” → return to form
+
+---
+
+### 🖨️ Watermark for Printed Page Only
+
+- When the user prints the result:
+  - Show a semi-transparent, large **watermark across the page**:
+    - Text: **"VISHAL MEGA MART™"**
+    - Styling:
+      - Font size: large (e.g., `5rem`)
+      - Color: light grey or `rgba(0,0,0,0.1)`
+      - Rotate the text diagonally (`transform: rotate(-30deg)`)
+      - Fixed position in center
+- Ensure watermark is:
+  - **Only visible in print mode**
+  - **Not visible on screen view**
+
+Use CSS `@media print { ... }` to handle this.
+
+---
+
+### 📚 JavaScript Logic
+
+- Store mock user data in a JS array of objects
+- Validate inputs against that data
+- Show the result and compute grades:
+  - 91–100: A1
+  - 81–90: A2
+  - 71–80: B1
+  - 61–70: B2
+  - 51–60: C1
+  - Below 50: Fail
+- Display grades in the table, not “marks only”
+- Show “Pass” if total >= 165
+
+---
+
+### 🧪 Mock Data
+
+Use this in JavaScript:
+
+```javascript
+const mockDatabase = [
+  {
+    name: "Adarsh Dubey",
+    rollNumber: "2311200171",
+    admitCard: "AXU723",
+    subjects: {
+      "Trolley Handling": 98,
+      "Billing Counter Etiquette": 89,
+      "Store Surveillance": 76,
+      "Aisle Navigation": 92,
+      "Mega Mart Code of Conduct": 85
+    }
+  },
+  {
+    name: "Prachi Jethwa",
+    rollNumber: "2311200183",
+    admitCard: "JKL901",
+    subjects: {
+      "Trolley Handling": 88,
+      "Billing Counter Etiquette": 91,
+      "Store Surveillance": 84,
+      "Aisle Navigation": 87,
+      "Mega Mart Code of Conduct": 93
+    }
+  },
+  {
+    name: "Sneha Pathak",
+    rollNumber: "2311200195",
+    admitCard: "RST556",
+    subjects: {
+      "Trolley Handling": 78,
+      "Billing Counter Etiquette": 82,
+      "Store Surveillance": 69,
+      "Aisle Navigation": 74,
+      "Mega Mart Code of Conduct": 80
+    }
+  },
+  {
+    name: "Rahul Meena",
+    rollNumber: "2311200202",
+    admitCard: "QWE341",
+    subjects: {
+      "Trolley Handling": 67,
+      "Billing Counter Etiquette": 72,
+      "Store Surveillance": 58,
+      "Aisle Navigation": 63,
+      "Mega Mart Code of Conduct": 70
+    }
+  }
+];
