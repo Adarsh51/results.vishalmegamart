@@ -249,22 +249,23 @@ body {
     color: #1565c0;
     font-size: 2rem;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 
 .result-status {
     display: inline-block;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    background: #4caf50;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 8px 20px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 10px;
 }
 
 .result-status.failed {
-    background: #f44336;
+    background: #ffebee;
+    color: #c62828;
 }
 
 /* Student Information */
@@ -274,151 +275,135 @@ body {
 
 .student-info h4 {
     color: #1565c0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid #1565c0;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .info-item {
     display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background: white;
-    border-radius: 6px;
-    border-left: 4px solid #1565c0;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .info-item .label {
     font-weight: 600;
-    color: #666;
+    color: #555;
+    font-size: 0.9rem;
 }
 
 .info-item .value {
-    font-weight: bold;
     color: #333;
+    font-size: 1.1rem;
 }
 
 /* Marks Table */
 .marks-section h4 {
     color: #1565c0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid #1565c0;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .marks-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
     background: white;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .marks-table th,
 .marks-table td {
-    padding: 15px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e9ecef;
 }
 
 .marks-table th {
-    background: #1565c0;
-    color: white;
+    background: #f8f9fa;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #1565c0;
 }
 
 .marks-table tbody tr:hover {
-    background: #f0f7ff;
+    background: #f8f9fa;
 }
 
 .marks-table .total-row {
-    background: #e3f2fd;
-    font-weight: bold;
-    font-size: 1.1rem;
+    background: #f8f9fa;
+    font-weight: 600;
 }
 
 .marks-table .total-row th {
-    background: #0d47a1;
+    color: #1565c0;
 }
 
 .pass-status {
-    color: #4caf50;
-    font-weight: bold;
+    color: #2e7d32;
+    font-weight: 600;
 }
 
 .fail-status {
-    color: #f44336;
-    font-weight: bold;
+    color: #c62828;
+    font-weight: 600;
 }
 
 /* Action Buttons */
 .action-buttons {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    gap: 15px;
     margin-top: 30px;
-    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .print-btn,
 .check-another-btn {
-    padding: 14px 28px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .print-btn {
-    background: linear-gradient(135deg, #00509e 0%, #3d6cb9 100%);
+    background: #1565c0;
     color: white;
-    box-shadow: 0 4px 12px rgba(0, 80, 158, 0.3);
 }
 
 .print-btn:hover {
-    background: linear-gradient(135deg, #003d7a 0%, #2a5a9e 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 80, 158, 0.4);
+    background: #0d47a1;
 }
 
 .check-another-btn {
-    background: linear-gradient(135deg, #3d6cb9 0%, #00509e 100%);
-    color: white;
-    box-shadow: 0 4px 12px rgba(61, 108, 185, 0.3);
+    background: #e3f2fd;
+    color: #1565c0;
 }
 
 .check-another-btn:hover {
-    background: linear-gradient(135deg, #2a5a9e 0%, #003d7a 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(61, 108, 185, 0.4);
+    background: #bbdefb;
 }
 
 /* Footer */
 .footer {
     background: #f8f9fa;
-    color: #666;
     padding: 20px;
     text-align: center;
-    border-top: 1px solid #ddd;
-    margin-top: 20px;
+    border-top: 1px solid #e9ecef;
+    margin-top: auto;
 }
 
 .contact-info p {
-    margin: 0;
+    color: #666;
     font-size: 0.9rem;
 }
 
@@ -427,61 +412,53 @@ body {
     .header,
     .action-buttons,
     .footer {
-        display: none !important;
+        display: none;
     }
     
     .results-container {
         box-shadow: none;
-        border: 1px solid #333;
-        position: relative;
+        margin: 0;
+        padding: 20px;
     }
     
     .marks-table th {
-        background: #333 !important;
-        color: white !important;
+        background: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
     }
     
-    /* Print Watermark */
     body::after {
-        content: "VISHAL MEGA MART™\A Developed by Adarsh Dubey";
+        content: "VMMSET 2025 Results";
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-30deg);
-        font-size: 3rem;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.12);
-        z-index: 1000;
-        white-space: pre;
-        pointer-events: none;
-        display: block;
-        font-family: 'Segoe UI', 'Roboto', sans-serif;
-        letter-spacing: 0.1em;
+        bottom: 0;
+        left: 0;
+        right: 0;
         text-align: center;
-        line-height: 1.2;
+        font-size: 12px;
+        color: #666;
+        padding: 10px;
+        background: #f8f9fa;
+        border-top: 1px solid #e9ecef;
     }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
-        margin: 0;
-        border-radius: 0;
+        margin: 10px;
+        min-height: auto;
     }
     
     .header {
-        padding: 15px;
+        padding: 20px 15px;
     }
     
     .logo-section {
         flex-direction: column;
-        gap: 10px;
+        text-align: center;
     }
     
     .logo {
-        width: 60px;
-        height: 60px;
-        font-size: 2.5rem;
+        margin-bottom: 15px;
     }
     
     .header-text h1 {
@@ -489,19 +466,17 @@ body {
     }
     
     .header-text h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .form-container,
     .results-container {
         padding: 20px;
-        margin: 10px;
-        border-radius: 6px;
+        margin: 15px 10px;
     }
     
     .captcha-container {
         flex-direction: column;
-        align-items: stretch;
     }
     
     .marks-table {
@@ -510,12 +485,11 @@ body {
     
     .marks-table th,
     .marks-table td {
-        padding: 10px 8px;
+        padding: 8px 10px;
     }
     
     .action-buttons {
         flex-direction: column;
-        align-items: stretch;
     }
     
     .info-grid {
@@ -538,7 +512,7 @@ body {
     
     .marks-table th,
     .marks-table td {
-        padding: 8px 5px;
+        padding: 6px 8px;
     }
 }
 
@@ -556,7 +530,7 @@ body {
 
 .form-container,
 .results-container {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .error-message.show {

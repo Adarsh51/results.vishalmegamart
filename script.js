@@ -1,5 +1,3 @@
-// VMMSET Results Portal JavaScript
-
 // Mock student database - updated with shorter admit card format
 const mockDatabase = [
     {
