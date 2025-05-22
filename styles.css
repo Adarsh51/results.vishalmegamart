@@ -372,33 +372,38 @@ body {
 
 .print-btn,
 .check-another-btn {
-    padding: 12px 25px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .print-btn {
-    background: #ff9800;
+    background: linear-gradient(135deg, #00509e 0%, #3d6cb9 100%);
     color: white;
+    box-shadow: 0 4px 12px rgba(0, 80, 158, 0.3);
 }
 
 .print-btn:hover {
-    background: #f57c00;
+    background: linear-gradient(135deg, #003d7a 0%, #2a5a9e 100%);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 80, 158, 0.4);
 }
 
 .check-another-btn {
-    background: #2196f3;
+    background: linear-gradient(135deg, #3d6cb9 0%, #00509e 100%);
     color: white;
+    box-shadow: 0 4px 12px rgba(61, 108, 185, 0.3);
 }
 
 .check-another-btn:hover {
-    background: #1976d2;
+    background: linear-gradient(135deg, #2a5a9e 0%, #003d7a 100%);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(61, 108, 185, 0.4);
 }
 
 /* Footer */
